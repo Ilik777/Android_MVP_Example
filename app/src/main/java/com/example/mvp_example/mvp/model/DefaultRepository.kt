@@ -1,15 +1,17 @@
 package com.example.mvp_example.mvp.model
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mvp_example.application.MVPApp
 import com.example.mvp_example.mvp.presenter.AdvertData
 import com.example.mvp_example.mvp.presenter.Repository
 
-class DefaultRepository : Repository {
+class DefaultRepository(
+    applicationContext: Context
+) : Repository {
 
     private var sharedPreferences: SharedPreferences =
-        MVPApp.appContext.applicationContext.getSharedPreferences(
+        applicationContext.applicationContext.getSharedPreferences(
             "mvp_example",
             AppCompatActivity.MODE_PRIVATE
         )

@@ -6,14 +6,14 @@ class Presenter(
     private val repository: Repository
 ) : Contract.Presenter {
 
-    private var view: Contract.View? = null
+    private var view: Contract.View = EmptyView
 
     override fun onAttachView(view: Contract.View) {
         this.view = view
     }
 
     override fun onDetach() {
-        this.view = null
+        this.view = EmptyView
     }
 
     override fun onSaveButtonClicked(
@@ -29,35 +29,35 @@ class Presenter(
 
         repository.saveAdvert(updatedAdvertData)
 
-        view?.showMessage("Сохранено")
+        view.showMessage("Сохранено")
     }
 
     override fun onDeleteButtonClicked() {
-        view?.updateAdvertTitle(NO_TEXT)
-        view?.updateAdvertSubtitle(NO_TEXT)
-        view?.updateAdvertDateText(NO_TEXT)
-        view?.showNoAdvertPhoto()
+        view.updateAdvertTitle(NO_TEXT)
+        view.updateAdvertSubtitle(NO_TEXT)
+        view.updateAdvertDateText(NO_TEXT)
+        view.showNoAdvertPhoto()
 
-        view?.showMessage("Удалено")
+        view.showMessage("Удалено")
     }
 
     override fun onLoadButtonClicked() {
         val advertData = repository.loadAdvert()
 
-        view?.updateAdvertTitle(advertData.title)
-        view?.updateAdvertSubtitle(advertData.subtitle)
-        view?.updateAdvertDateText(advertData.dateString)
-        view?.showAdvertPhoto()
-        view?.showMessage("Загружено")
+        view.updateAdvertTitle(advertData.title)
+        view.updateAdvertSubtitle(advertData.subtitle)
+        view.updateAdvertDateText(advertData.dateString)
+        view.showAdvertPhoto()
+        view.showMessage("Загружено")
     }
 
     override fun onNextButtonClicked() {
         repository.clearData()
 
-        view?.showMessage("Память очищена")
+        view.showMessage("Память очищена")
     }
 
     override fun onUnknownButtonClicked() {
-        view?.showError("Unknown View Clicked")
+        view.showError("Unknown View Clicked")
     }
 }

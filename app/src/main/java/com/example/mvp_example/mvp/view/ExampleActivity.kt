@@ -3,7 +3,6 @@ package com.example.mvp_example.mvp.view
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,8 +17,7 @@ import java.util.Date
 
 class ExampleActivity :
     AppCompatActivity(),
-    Contract.View,
-    View.OnClickListener {
+    Contract.View {
 
     private lateinit var presenter: Contract.Presenter
 
@@ -36,29 +34,16 @@ class ExampleActivity :
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = Presenter(DefaultRepository())
+        presenter = Presenter(DefaultRepository(applicationContext))
         presenter.onAttachView(this)
 
         initViews()
+        setClickListeners()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDetach() //Memory Leak
-    }
-
-    override fun onClick(
-        veiw: View?
-    ): Unit = when (veiw?.id) {
-        saveAdvertButton.id -> presenter.onSaveButtonClicked(
-            title = advertTitleTextView.text.toString(),
-            subtitle = advertSubtitleTextView.text.toString(),
-            date = DateFormat.format("dd MMM HH:mm:ss", Date().time) as String
-        )
-        deleteAdvertButton.id -> presenter.onDeleteButtonClicked()
-        loadAdvertButton.id -> presenter.onLoadButtonClicked()
-        openNextScreenButton.id -> presenter.onNextButtonClicked()
-        else -> presenter.onUnknownButtonClicked()
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -115,11 +100,27 @@ class ExampleActivity :
         deleteAdvertButton = findViewById(R.id.main_activity_advert_button_remove)
         loadAdvertButton = findViewById(R.id.main_activity_advert_button_load)
         openNextScreenButton = findViewById(R.id.main_activity_advert_button_next)
+    }
 
-        saveAdvertButton.setOnClickListener(this)
-        deleteAdvertButton.setOnClickListener(this)
-        loadAdvertButton.setOnClickListener(this)
-        advertPhotoImageView.setOnClickListener(this)
-        openNextScreenButton.setOnClickListener(this)
+    private fun setClickListeners() {
+        saveAdvertButton.setOnClickListener {
+            presenter.onSaveButtonClicked(
+                title = advertTitleTextView.text.toString(),
+                subtitle = advertSubtitleTextView.text.toString(),
+                date = DateFormat.format("dd MMM HH:mm:ss", Date().time) as String
+            )
+        }
+        deleteAdvertButton.setOnClickListener {
+            presenter.onDeleteButtonClicked()
+        }
+        loadAdvertButton.setOnClickListener {
+            presenter.onLoadButtonClicked()
+        }
+        advertPhotoImageView.setOnClickListener {
+            presenter.onUnknownButtonClicked()
+        }
+        openNextScreenButton.setOnClickListener {
+            presenter.onNextButtonClicked()
+        }
     }
 }
