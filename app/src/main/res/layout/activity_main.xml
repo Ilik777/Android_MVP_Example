@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_cabinet_live_advert_details"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="16dp"
+    android:paddingBottom="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/main_activity_advert_imageview_photo"
+        android:layout_width="124dp"
+        android:layout_height="84dp"
+        android:background="@drawable/bg_advert_photo_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/main_activity_advert_textview_expire_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_advert_textview_expire_date_green"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="4dp"
+        android:text="Активно до 15 мая"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/main_activity_advert_textview_title"
+        app:layout_constraintStart_toEndOf="@id/main_activity_advert_imageview_photo"
+        app:layout_constraintTop_toTopOf="@id/main_activity_advert_imageview_photo"
+        />
+
+    <TextView
+        android:id="@+id/main_activity_advert_textview_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="10sp"
+        android:maxLines="1"
+        android:text="Mercedes-Benz E 240"
+        android:textColor="#2a81dd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/main_activity_advert_textview_expire_date"
+        app:layout_constraintTop_toBottomOf="@id/main_activity_advert_textview_expire_date"
+        />
+
+    <TextView
+        android:id="@+id/main_activity_advert_textview_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lineSpacingExtra="10sp"
+        android:maxLines="1"
+        android:text="2 500 000 ₸, Алматы"
+        android:textColor="#888b94"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/main_activity_advert_textview_title"
+        app:layout_constraintTop_toBottomOf="@id/main_activity_advert_textview_title"
+        />
+
+    <Button
+        android:id="@+id/main_activity_advert_button_save"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_button_light_blue_round"
+        android:text="Сохранить"
+        android:textAllCaps="false"
+        android:textColor="#2a81dd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/main_activity_advert_button_remove"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_activity_advert_imageview_photo"
+        />
+
+    <Button
+        android:id="@+id/main_activity_advert_button_remove"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background_transparent"
+        android:text="Удалить"
+        android:textAllCaps="false"
+        android:textColor="#2a81dd"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/main_activity_advert_button_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/main_activity_advert_button_save"
+        app:layout_constraintTop_toTopOf="@id/main_activity_advert_button_save"
+        />
+
+    <Button
+        android:id="@+id/main_activity_advert_button_load"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_blue_button"
+        android:text="Загрузить"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_activity_advert_button_save"
+        />
+
+    <Button
+        android:id="@+id/main_activity_advert_button_next"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_green_button"
+        android:text="Следующее окно"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_activity_advert_button_load"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
