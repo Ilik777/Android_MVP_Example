@@ -43,7 +43,7 @@ class ExampleActivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.onDetach() //Memory Leak
+        presenter.onDetach() //Prevent Memory Leak
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

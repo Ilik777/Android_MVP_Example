@@ -4,7 +4,8 @@ private const val NO_TEXT = ""
 
 class Presenter(
     private val repository: Repository
-) : Contract.Presenter {
+) : Contract.Presenter,
+    LoadAdvertCallback {
 
     private var view: Contract.View = EmptyView
 
@@ -42,13 +43,7 @@ class Presenter(
     }
 
     override fun onLoadButtonClicked() {
-        val advertData = repository.loadAdvert()
-
-        view.updateAdvertTitle(advertData.title)
-        view.updateAdvertSubtitle(advertData.subtitle)
-        view.updateAdvertDateText(advertData.dateString)
-        view.showAdvertPhoto()
-        view.showMessage("Загружено")
+        repository.loadAdvert(this)
     }
 
     override fun onNextButtonClicked() {
@@ -59,5 +54,13 @@ class Presenter(
 
     override fun onUnknownButtonClicked() {
         view.showError("Unknown View Clicked")
+    }
+
+    override fun advertLoaded(advertData: AdvertData) {
+        view.updateAdvertTitle(advertData.title)
+        view.updateAdvertSubtitle(advertData.subtitle)
+        view.updateAdvertDateText(advertData.dateString)
+        view.showAdvertPhoto()
+        view.showMessage("Загружено")
     }
 }

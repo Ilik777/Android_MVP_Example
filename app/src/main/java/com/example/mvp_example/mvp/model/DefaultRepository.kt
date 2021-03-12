@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mvp_example.mvp.presenter.AdvertData
+import com.example.mvp_example.mvp.presenter.LoadAdvertCallback
 import com.example.mvp_example.mvp.presenter.Repository
 
 class DefaultRepository(
@@ -34,11 +35,17 @@ class DefaultRepository(
         editor.apply()
     }
 
-    override fun loadAdvert(): AdvertData = AdvertData(
-        title = sharedPreferences.getString("title", "defaultTitle").orEmpty(),
-        subtitle = sharedPreferences.getString("subtitle", "defaultSubtitle").orEmpty(),
-        dateString = sharedPreferences.getString("date", "defaultDate").orEmpty()
-    )
+    override fun loadAdvert(
+        callback: LoadAdvertCallback
+    ) {
+        callback.advertLoaded(
+            AdvertData(
+                title = sharedPreferences.getString("title", "defaultTitle").orEmpty(),
+                subtitle = sharedPreferences.getString("subtitle", "defaultSubtitle").orEmpty(),
+                dateString = sharedPreferences.getString("date", "defaultDate").orEmpty()
+            )
+        )
+    }
 
     override fun clearData() {
         editor.clear()

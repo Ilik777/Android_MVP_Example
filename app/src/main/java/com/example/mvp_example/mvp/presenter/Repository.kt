@@ -7,7 +7,7 @@ interface Repository {
         advertData: AdvertData
     )
 
-    fun loadAdvert(): AdvertData
+    fun loadAdvert(callback: LoadAdvertCallback)
 
     fun clearData()
 }
